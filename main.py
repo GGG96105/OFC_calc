@@ -25,6 +25,25 @@ while True:
     confirmation = input("Are you happy with your selection of names (y/n): ")
     if confirmation.casefold() == 'y':
         break
+
+
+final_score = [0, 0, 0]
+
+
+
+starting_score_conf = input("Do you want to insert a starting score (y/n): ")
+while True:
+  if starting_score_conf == 'y':
+    try:
+      for x in range(number_of_players):
+        final_score[x] = int(input(f"Enter the starting points of player {x+1}: "))
+      break
+    except ValueError:
+      print('Please enter valid numbers')
+  else:
+    break
+    
+
 # main program
 hand_number = 1
 points = {}
@@ -32,7 +51,7 @@ points[0] = [0, 0, 0]
 row_inter_1_2 = 0
 row_inter_2_3 = 0
 row_inter_1_3 = 0
-final_score = [0, 0, 0]
+
 for_zip = []
 while True:
     print(f"This is hand {hand_number}...")
@@ -70,9 +89,9 @@ while True:
     if points_check != 'n':
 
         for_zip = points.values()
-        final_score = sum(map(np.array, for_zip))
+        final_score += sum(map(np.array, for_zip))
 
-        final_score_view = input("Do you want to take a look at the current score (y/n):")
+        final_score_view = input("Do you want to take a look at the current score (y/n): ")
 
         if final_score_view == 'y':
             print(final_score)
